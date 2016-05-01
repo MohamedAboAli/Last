@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".MainActivityFragment"
+    tools:showIn="@layout/activity_main">
+
+
+    <GridView
+        android:id="@+id/gridView_movies"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="auto_fit"
+
+        android:stretchMode="columnWidth"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/popularButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="popular" />
+
+        <Button
+            android:id="@+id/ptoprateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="top rate" />
+
+        <Button
+            android:id="@+id/favorateList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="favorate" />
+
+    </LinearLayout>
+</RelativeLayout>
