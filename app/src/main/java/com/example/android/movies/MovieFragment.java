@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -79,10 +80,15 @@ public class MovieFragment extends Fragment {
                 database.open();
                 try {
                     JSONObject MoviesData= database.SelectAllViewedMovie("favorate");
-                    Gson parser1 = new Gson();
-                    gsonobject1 = parser1.fromJson(MoviesData.toString(), movieData.class);
-                    myAdapter = new MovieAdapter(getActivity(), gsonobject1.getResults());
-                    gridview.setAdapter(myAdapter);
+                    if(MoviesData !=null){
+                        Gson parser1 = new Gson();
+                        gsonobject1 = parser1.fromJson(MoviesData.toString(), movieData.class);
+                        myAdapter = new MovieAdapter(getActivity(), gsonobject1.getResults());
+                        gridview.setAdapter(myAdapter);
+                    }else{
+                        Toast.makeText(getActivity(), "There `re Not Movies Favorate", Toast.LENGTH_LONG).show();
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

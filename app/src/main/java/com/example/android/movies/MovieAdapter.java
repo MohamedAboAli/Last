@@ -43,15 +43,28 @@ public class MovieAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView=inflater.inflate(R.layout.grid_item_movie,parent,false);
+        ViewHodler holder;
+
+        if (convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            convertView = inflater.inflate(R.layout.grid_item_movie, parent, false);
+            holder = new ViewHodler();
+            holder.posterImage = (ImageView) convertView.findViewById(R.id.movie_poster);
+            convertView.setTag(holder);
+        }else{
+            holder = (ViewHodler) convertView.getTag();
+        }
         movieData.ResultsEntity item= (movieData.ResultsEntity) getItem(position);
-        ImageView poster= (ImageView) rowView.findViewById(R.id.movie_poster);
-
-
-        String imageUrl = item.getPoster_path();
-        Picasso.with(context).load("https://image.tmdb.org/t/p/w185" + imageUrl).into(poster);
-
-        return rowView;
+        if(MoviePoster.size()!=0) {
+            Picasso.with(context)
+                    .load("http://image.tmdb.org/t/p/w300" + item.getPoster_path())
+                    .into(holder.posterImage);
+        }
+        return convertView;
     }
+    class ViewHodler {
+        // declare your views here
+        ImageView posterImage;
+    }
+
 }
